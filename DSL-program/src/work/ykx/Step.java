@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Step {
-    ArrayList<String>expression=new ArrayList<>();
-    Map<String,String>answer_step=new HashMap<>();
+    ArrayList<String>expression=new ArrayList<>(); //记录Speak的表达式
+    Map<String,String> branches =new HashMap<>(); //key=用户需求的名字, value=用户需求对应分支的StepId
     Listen listen=new Listen();
     String silence_to=new String();
     String default_to=new String();
     int exit=0;
-    public void setAnswer_step(Map<String, String> answer_step) {
-        this.answer_step = answer_step;
+    public void setBranches(Map<String, String> branches) {
+        this.branches = branches;
     }
 
     public void setDefault_to(String default_to) {
@@ -43,8 +43,8 @@ public class Step {
         return silence_to;
     }
 
-    public Map<String, String> getAnswer_step() {
-        return answer_step;
+    public Map<String, String> getBranches() {
+        return branches;
     }
 
     public ArrayList<String> getExpression() {

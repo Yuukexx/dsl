@@ -16,10 +16,10 @@ import java.io.*;
  *       将当前Step置为刚才获得的stepid对应的step
  */
 public class Interpreter {
-    HashMap<String,String>varTable;
-    Parser p;
-    Step curStep;
-    HashMap<String,Train>trainMap;
+    HashMap<String,String>varTable=new HashMap<>();
+    Parser p=new Parser();
+    Step curStep=new Step();
+    HashMap<String,Train>trainMap=new HashMap<>();
 
     public void init(){
         trainMap=new HashMap<String,Train>();
@@ -61,9 +61,9 @@ public class Interpreter {
         }
     }
     public void run(){
-        init();
+        //init();
         p.ParseFile("test.rsl");
-        curStep=p.scrip.steps.get(p.scrip.entry);
+        curStep=p.scrip.getAns_step().get(p.scrip.getEntry());
         int repeat=0;
         String ans="";
         while(true){
@@ -72,7 +72,8 @@ public class Interpreter {
             if(curStep.exit==1){
                 break;
             }
-            Listen(curStep.listen);
+            curStep.listen.run();
+
         }
     }
     public void interExpression(ArrayList<String>exps){
@@ -91,17 +92,17 @@ public class Interpreter {
             }
         }
     }
-    public void Listen(Listen listen){
-        try {
-            Thread.sleep(listen.getBeginTimer()*1000);
-            System.out.println("滴 滴滴");
-            int lastTime=listen.getEndTimer()- listen.getBeginTimer();
-            Thread.sleep(lastTime*1000);
-            System.out.println("您的对话已结束");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-    }
+//    public void Listen(Listen listen){
+//        try {
+//            Thread.sleep(listen.getBeginTimer()*1000);
+//            System.out.println("robot waiting");
+//            int lastTime=listen.getEndTimer()- listen.getBeginTimer();
+//            Thread.sleep(lastTime*1000);
+//            System.out.println("time out");
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 }

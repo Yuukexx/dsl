@@ -14,14 +14,15 @@ public class Parser {
             //加入编码字符集，解决中文乱码问题
             //reader = new BufferedReader(new FileReader(filename));
             String line=reader.readLine();
-            while(!line.trim().startsWith("End")){
-                //Thread.sleep(1000);
+            while(line!=null){
+                //删除行首空白
                 String content=line.trim();
                 //空行情况
                 if(content.length()==0){
                     line=reader.readLine();
                     continue;
                 }
+                //注释行情况
                 else if(content.startsWith("#")){
                     line=reader.readLine();
                     continue;
@@ -46,23 +47,28 @@ public class Parser {
     }
     public void ParseLine(String line){
         ArrayList<String>tokens=new ArrayList<>();
+        //tempword临时存储每一行的内容
         String tempword="";
         for(int i=0;i<line.length();i++)
         {
             char cur_char=line.charAt(i);
-            if(cur_char == '#'){
+            if(cur_char == '#'){ //如果这一行中出现注释，忽略这一行接下来出现的所有符号
                 break;
             }
             if (cur_char != ' ') {
+                //没有遇见空格时，将遇见的字符一个一个拼凑成字符串
                 tempword+=cur_char;
             }else{
+                //遇见空格，字符串拼凑完毕，将此符号加入词法元素表中
                 if(tempword!=""){
                     tokens.add(tempword);
                 }
                 tempword="";
             }
         }
+        //将此行的最后一个字符串符号加入到词法元素表中
         tokens.add(tempword);
+        //对这一行的词法元素进行处理
         ProcessTokens(tokens);
     }
     public void ProcessTokens(ArrayList<String>tokens){
@@ -97,15 +103,15 @@ public class Parser {
         }
     }
     public void ProcessStep(String stepid){
+        if(scrip.getAns_step().size()==0){ //如果这是第一个step
+            scrip.setEntry(stepid);
+        }
         if(!lastStepid.isEmpty()){
-            scrip.steps.put(lastStepid,tempstep);
+            scrip.getAns_step().put(lastStepid,tempstep);
         }
         Step newstep=new Step();
         tempstep=newstep;
         lastStepid=stepid;
-        if(scrip.steps.size()==0){
-            scrip.entry=stepid;
-        }
     }
     public void ProcessSpeak(ArrayList<String>tokens){
         ProcessExpression(tokens);
@@ -115,7 +121,8 @@ public class Parser {
         for(int i=0;i<tokens.size();i++){
             switch (tokens.get(i).charAt(0)){
                 case '$':
-                    scrip.vars.add(tokens.get(i).substring(1));
+                    //如果是变量就把变量名存在scrip的变量表中
+                    scrip.getVars().add(tokens.get(i).substring(1));
                     tempstep.expression.add(tokens.get(i));
                     break;
                 case '"':
@@ -134,8 +141,8 @@ public class Parser {
         tempstep.setListen(listen);
     }
     public void ProcessBranch(String answer,String nextStepid){
-        String var=answer.substring(1,answer.length());
-        tempstep.answer_step.put(var,nextStepid);
+        String var=answer.substring(1,answer.length()); //去掉answer的双引号
+        tempstep.branches.put(var,nextStepid);
     }
     public void ProcessDefault(String nextStepid){
         tempstep.default_to=nextStepid;

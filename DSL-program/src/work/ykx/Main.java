@@ -1,9 +1,13 @@
 package work.ykx;
-import java.io.*;
-import java.io.FileInputStream;
+
 public class Main {
     public static void main(String[] args) {
-        Interpreter i = new Interpreter();
-        i.run();
+        User user=new User();
+        user.setName(user.processString(args[0]));
+        user.setPhoneNum(user.processString(args[1]));
+        user.setAmount(Double.parseDouble(user.processString(args[2])));
+        System.out.println(user);
+        //Interpreter i = new Interpreter();
+       //i.run();
     }
 }

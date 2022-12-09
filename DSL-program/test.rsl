@@ -1,36 +1,30 @@
 Step welcome
-    Speak $name + "您好，这里是12306买票小程序，智能客服杉菜为您服务，请问有什么可以帮您?"
+    Speak "Hello! Can I help you?"
     Listen 5 20
-    Branch "查询" showProc
-    Branch "买票" buyTicketProc
-    Branch "退票" refundTicketProc
+    Branch "check my bill" billProc
+    Branch "give some advice" complainProc
     Silence silenceProc
     Default defaultProc
 
 Step scoreProc
-    Speak "请您为杉菜的服务打分，1-10分，10分最高 ^-^"
+    Speak "Please score for my service, between 1 to 10, 10 is the highest ^-^"
     Listen 5 20
     Default thanks
 
 Step thanks
-    Speak "感谢您的支持，再见！"
+    Speak "Thank you so much. Wish you have a nice day. Bye-bye!"
     Exit
 
 Step showProc
-    Speak "查询" + $date + "从" + $beginPlace + "到" + $endPlace + "的车次信息有:"
-
-Step buyTicketProc
-
-Step refundTicketProc
+    Speak "Your bill this month is " + $amount + " dollars."
 
 Step silenceProc
-    Speak "听不清，请您大声一点可以吗"
+    Speak "could you speak up?"
     Listen 5 20
-    Branch "查询" showProc
-    Branch "买票" buyTicketProc
-    Branch "退票" refundTicketProc
+    Branch "check my bill" billProc
+    Branch "give some advice" complainProc
     Silence silenceProc
     Default defaultProc
 
 Step defaultProc
-End
+    Speak "The conversation is over. Thank you for your calling. "
