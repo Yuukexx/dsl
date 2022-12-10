@@ -27,6 +27,7 @@ public class Interpreter {
         }
     }
     public void run(String conf_file){
+        System.out.println("==========CONVERSATION BEGIN===========");
         parser.ParseFile(conf_file);
         String entrance=parser.getScrip().getEntry();
         curStep = parser.getScrip().getName_step().get(entrance);
@@ -38,6 +39,7 @@ public class Interpreter {
             }
             if(curStep.IsExit()){
                 System.exit(0);
+                System.out.println("==========CONVERSATION END=============");
             }
             if(curStep.IsNeedListen()){
                 dos.userOut();
@@ -46,7 +48,12 @@ public class Interpreter {
             }
             if(answer.isEmpty()){
                 System.out.println();
-                curStep=parser.getScrip().getName_step().get(curStep.silence_to);
+                if(parser.getScrip().getName_step().get(curStep.silence_to)==null){
+                    curStep=parser.getScrip().getName_step().get(curStep.default_to);
+                }else{
+                    curStep=parser.getScrip().getName_step().get(curStep.silence_to);
+                }
+
             }
             else if(curStep.getBranches().get(answer)==null){
                 //dos.robotOut();

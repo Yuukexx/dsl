@@ -17,7 +17,7 @@ Step billProc
     Speak "Your bill this month is " + $amount + " dollars."
     Branch "exit" scoreProc
     Silence defaultProc
-    Default defaultProc
+    Default scoreProc
 
 Step silenceProc
     Speak "Sorry, I can't hear you clearly. Could you speak up?"
