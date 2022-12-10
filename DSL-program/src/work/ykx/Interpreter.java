@@ -19,51 +19,50 @@ public class Interpreter {
     HashMap<String,String>varTable=new HashMap<>();
     Parser p=new Parser();
     Step curStep=new Step();
-    HashMap<String,Train>trainMap=new HashMap<>();
 
-    public void init(){
-        trainMap=new HashMap<String,Train>();
-        p=new Parser();
-        FileInputStream fin= null;
-        try {
-            fin = new FileInputStream("db.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            BufferedReader reader=new BufferedReader(new InputStreamReader(fin,"GBK"));
-            String line=reader.readLine();
-            while(line!=null){
-                String tempword="";
-                ArrayList<String>temparray=new ArrayList<>();
-                for(int i=0;i<line.length();i++){
-                    char cur=line.charAt(i);
-                    if (cur != ' ') {
-                        tempword+=cur;
-                    } else if (tempword != ""){
-                        temparray.add(tempword);
-                        tempword="";
-                    }
-                }
-                temparray.add(tempword);
-                if(temparray.size()==4) {
-                    Train t = new Train(temparray.get(0), temparray.get(1), temparray.get(2), Integer.parseInt(temparray.get(3)));
-                    temparray.clear();
-                    trainMap.put(t.getStartCity(), t);
-                }
-                line=reader.readLine();
-            }
-            reader.close();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
+    //从文件中读取初始数据
+//    public void init(){
+//        p=new Parser();
+//        FileInputStream fin= null;
+//        try {
+//            fin = new FileInputStream("db.txt");
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            BufferedReader reader=new BufferedReader(new InputStreamReader(fin,"GBK"));
+//            String line=reader.readLine();
+//            while(line!=null){
+//                String tempword="";
+//                ArrayList<String>temparray=new ArrayList<>();
+//                for(int i=0;i<line.length();i++){
+//                    char cur=line.charAt(i);
+//                    if (cur != ' ') {
+//                        tempword+=cur;
+//                    } else if (tempword != ""){
+//                        temparray.add(tempword);
+//                        tempword="";
+//                    }
+//                }
+//                temparray.add(tempword);
+//                if(temparray.size()==4) {
+//                    Train t = new Train(temparray.get(0), temparray.get(1), temparray.get(2), Integer.parseInt(temparray.get(3)));
+//                    temparray.clear();
+//                    trainMap.put(t.getStartCity(), t);
+//                }
+//                line=reader.readLine();
+//            }
+//            reader.close();
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }catch(IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     public void run(){
         //init();
         p.ParseFile("test.rsl");
-        curStep=p.scrip.getAns_step().get(p.scrip.getEntry());
+        curStep=p.getScrip().getAns_step().get(p.getScrip().getEntry());
         int repeat=0;
         String ans="";
         while(true){
@@ -72,7 +71,9 @@ public class Interpreter {
             if(curStep.exit==1){
                 break;
             }
+            ans=curStep.listen.get();
             curStep.listen.run();
+
 
         }
     }

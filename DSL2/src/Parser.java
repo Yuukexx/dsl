@@ -1,11 +1,10 @@
-package work.ykx;
 import java.io.*;
 import java.util.ArrayList;
 
 public class Parser {
     private Step tempstep=new Step();
     private String lastStepid="";
-    private Scrip scrip=new Scrip(); //è¯­æ³•æ ‘æ ‘æ ¹
+    private Scrip scrip=new Scrip(); //Óï·¨Ê÷Ê÷¸ù
 
     public void setLastStepid(String lastStepid) {
         this.lastStepid = lastStepid;
@@ -36,26 +35,27 @@ public class Parser {
         File f=new File(filename);
         try{
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(f), "gbk"));
-            //åŠ å…¥ç¼–ç å­—ç¬¦é›†ï¼Œè§£å†³ä¸­æ–‡ä¹±ç é—®é¢˜
+            //¼ÓÈë±àÂë×Ö·û¼¯£¬½â¾öÖĞÎÄÂÒÂëÎÊÌâ
             //reader = new BufferedReader(new FileReader(filename));
             String line=reader.readLine();
+            String content;
             while(line!=null){
-                //åˆ é™¤è¡Œé¦–ç©ºç™½
-                String content=line.trim();
-                //ç©ºè¡Œæƒ…å†µ
+                //É¾³ıĞĞÊ×¿Õ°×
+                content=line.trim();
+                //¿ÕĞĞÇé¿ö
                 if(content.length()==0){
                     line=reader.readLine();
                     continue;
                 }
-                //æ³¨é‡Šè¡Œæƒ…å†µ
+                //×¢ÊÍĞĞÇé¿ö
                 else if(content.startsWith("#")){
                     line=reader.readLine();
                     continue;
                 }
-                System.out.println(line);
-                ParseLine(line);
+                ParseLine(content);
                 line=reader.readLine();
             }
+            scrip.getName_step().put(lastStepid,tempstep);
         }catch(FileNotFoundException e){
             System.out.println("Error!!File is not found!");
         } catch(IOException e){
@@ -72,28 +72,37 @@ public class Parser {
     }
     public void ParseLine(String line){
         ArrayList<String>tokens=new ArrayList<>();
-        //tempwordä¸´æ—¶å­˜å‚¨æ¯ä¸€è¡Œçš„å†…å®¹
+        //tempword»ñÈ¡ÕâÒ»ĞĞµÄÃ¿Ò»¸ö´Ê·¨ÔªËØ
         String tempword="";
         for(int i=0;i<line.length();i++)
         {
             char cur_char=line.charAt(i);
-            if(cur_char == '#'){ //å¦‚æœè¿™ä¸€è¡Œä¸­å‡ºç°æ³¨é‡Šï¼Œå¿½ç•¥è¿™ä¸€è¡Œæ¥ä¸‹æ¥å‡ºç°çš„æ‰€æœ‰ç¬¦å·
+            if(cur_char == '#'){ //Èç¹ûÕâÒ»ĞĞÖĞ³öÏÖ×¢ÊÍ£¬ºöÂÔÕâÒ»ĞĞ½ÓÏÂÀ´³öÏÖµÄËùÓĞ·ûºÅ
                 break;
             }
+            if(cur_char=='"')
+            {
+                //ÕÒµ½ÏÂÒ»¸öË«ÒıºÅµÄÎ»ÖÃ£¬½ØÈ¡ÆäË«ÒıºÅÄÚ×Ö·û´®³£Á¿£¬¸³Öµ¸øtempword
+                String sub=line.substring(i+1);
+                int j=sub.indexOf('"');
+                tempword=line.substring(i,j+i+1);
+                //System.out.println("Ë«ÒıºÅÄÚµÄÎª"+tempword);
+                i+=j+1; //iÒÆµ½ÏÂÒ»¸öË«ÒıºÅÖ®ºó
+            }
             if (cur_char != ' ') {
-                //æ²¡æœ‰é‡è§ç©ºæ ¼æ—¶ï¼Œå°†é‡è§çš„å­—ç¬¦ä¸€ä¸ªä¸€ä¸ªæ‹¼å‡‘æˆå­—ç¬¦ä¸²
+                //Ã»ÓĞÓö¼û¿Õ¸ñÊ±£¬½«Óö¼ûµÄ×Ö·ûÒ»¸öÒ»¸öÆ´´Õ³É×Ö·û´®
                 tempword+=cur_char;
             }else{
-                //é‡è§ç©ºæ ¼ï¼Œå­—ç¬¦ä¸²æ‹¼å‡‘å®Œæ¯•ï¼Œå°†æ­¤ç¬¦å·åŠ å…¥è¯æ³•å…ƒç´ è¡¨ä¸­
+                //Óö¼û¿Õ¸ñ£¬×Ö·û´®Æ´´ÕÍê±Ï£¬½«´Ë·ûºÅ¼ÓÈë´Ê·¨ÔªËØ±íÖĞ
                 if(tempword!=""){
                     tokens.add(tempword);
                 }
                 tempword="";
             }
         }
-        //å°†æ­¤è¡Œçš„æœ€åä¸€ä¸ªå­—ç¬¦ä¸²ç¬¦å·åŠ å…¥åˆ°è¯æ³•å…ƒç´ è¡¨ä¸­
+        //½«´ËĞĞµÄ×îºóÒ»¸ö×Ö·û´®·ûºÅ¼ÓÈëµ½´Ê·¨ÔªËØ±íÖĞ
         tokens.add(tempword);
-        //å¯¹è¿™ä¸€è¡Œçš„è¯æ³•å…ƒç´ è¿›è¡Œå¤„ç†
+        //¶ÔÕâÒ»ĞĞµÄ´Ê·¨ÔªËØ½øĞĞ´¦Àí
         ProcessTokens(tokens);
     }
     public void ProcessTokens(ArrayList<String>tokens){
@@ -128,11 +137,12 @@ public class Parser {
         }
     }
     public void ProcessStep(String stepid){
-        if(scrip.getAns_step().size()==0){ //å¦‚æœè¿™æ˜¯ç¬¬ä¸€ä¸ªstep
+        if(scrip.getEntry().equals("")){ //Èç¹ûÕâÊÇµÚÒ»¸östep
             scrip.setEntry(stepid);
         }
-        if(!lastStepid.isEmpty()){
-            scrip.getAns_step().put(lastStepid,tempstep);
+        //¶ÔÓ¦Ã¿Ò»¶ÎµÚÒ»¾ä»°À´´æ·Å
+        if(!lastStepid.isEmpty()){ //Èç¹ûlastStepid²»ÊÇ¿Õ£¬¾Í°ÑÉÏÒ»¸östepºÍÉÏÒ»¸östepid¶ÔÓ¦ÆğÀ´£¬·Å½øName_Step±íÖĞ
+            scrip.getName_step().put(lastStepid,tempstep);
         }
         Step newstep=new Step();
         tempstep=newstep;
@@ -146,7 +156,7 @@ public class Parser {
         for(int i=0;i<tokens.size();i++){
             switch (tokens.get(i).charAt(0)){
                 case '$':
-                    //å¦‚æœæ˜¯å˜é‡å°±æŠŠå˜é‡åå­˜åœ¨scripçš„å˜é‡è¡¨ä¸­
+                    //Èç¹ûÊÇ±äÁ¿¾Í°Ñ±äÁ¿Ãû´æÔÚscripµÄ±äÁ¿±íÖĞ
                     scrip.getVars().add(tokens.get(i).substring(1));
                     tempstep.expression.add(tokens.get(i));
                     break;
@@ -163,17 +173,18 @@ public class Parser {
     }
     public void ProcessListen(int startTimer,int endTimer){
         Listen listen=new Listen(startTimer,endTimer);
+        tempstep.setNeedListen(true);
         tempstep.setListen(listen);
     }
     public void ProcessBranch(String answer,String nextStepid){
-        String var=answer.substring(1,answer.length()); //å»æ‰answerçš„åŒå¼•å·
+        String var=answer.substring(1,answer.length()-1); //È¥µôanswerµÄË«ÒıºÅ
         tempstep.branches.put(var,nextStepid);
     }
     public void ProcessDefault(String nextStepid){
         tempstep.default_to=nextStepid;
     }
     public void ProcessExit(){
-        tempstep.exit=1;
+        tempstep.setExit(true);
     }
     public void ProcessSilence(String nextStepid){
         tempstep.silence_to=nextStepid;
