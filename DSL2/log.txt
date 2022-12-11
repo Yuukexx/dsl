@@ -1,0 +1,55 @@
+
+2022-12-11 07:54:23:122222222222;2022-12-11 08:46:58:User's information: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;;
+
+2022-12-11 08:54:18:User's information: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:10:05]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:10:11]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:10:11]:Mr.Zhang:GO TO STEP billProc
+[2022-12-11 09:10:13]:Mr.Zhang:LOGOUT
+[2022-12-11 09:11:11]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:11:28]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:11:32]:Mr.Zhang:GO TO STEP billProc
+[2022-12-11 09:13:42]:Mr.Zhang:LOGOUT
+[2022-12-11 09:13:45]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:13:49]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:13:49]:Mr.Zhang:GO TO STEP billProc
+[2022-12-11 09:13:49]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:13:50]:Mr.Zhang:GET THE ANSWER 3
+[2022-12-11 09:13:50]:Mr.Zhang:LOGOUT
+[2022-12-11 09:14:38]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:14:38]:Mr.Zhang STEP 
+[2022-12-11 09:14:39]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:14:39]:Mr.Zhang STEP 
+[2022-12-11 09:14:45]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:14:45]:Mr.Zhang:GO TO STEP billProc
+[2022-12-11 09:14:45]:Mr.Zhang STEP billProc
+[2022-12-11 09:14:45]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:14:45]:Mr.Zhang STEP billProc
+[2022-12-11 09:14:46]:Mr.Zhang:GET THE ANSWER 3
+[2022-12-11 09:14:46]:Mr.Zhang STEP billProc
+[2022-12-11 09:14:46]:Mr.Zhang:LOGOUT
+[2022-12-11 09:15:45]:Mr.Zhang:recieve no input
+[2022-12-11 09:15:45]:Mr.Zhang STEP 
+[2022-12-11 09:18:12]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:18:14]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:18:19]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:18:19]:Mr.Zhang:GO TO STEP billProc
+[2022-12-11 09:18:19]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:18:19]:Mr.Zhang:GO TO STEP defaultProc
+[2022-12-11 09:18:21]:Mr.Zhang:GET THE ANSWER 3
+[2022-12-11 09:18:21]:Mr.Zhang:GO TO STEP 
+[2022-12-11 09:18:21]:Mr.Zhang:LOGOUT
+[2022-12-11 09:20:30]:Mr.Zhang:recieve no input
+[2022-12-11 09:20:30]:Mr.Zhang:GO TO STEP 
+[2022-12-11 09:20:33]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:20:43]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:20:43]:Mr.Zhang:GO TO STEP scoreProc
+[2022-12-11 09:20:43]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-11 09:20:43]:Mr.Zhang:GO TO STEP defaultProc
+[2022-12-11 09:20:44]:Mr.Zhang:GET THE ANSWER 9
+[2022-12-11 09:20:44]:Mr.Zhang:GO TO STEP 
+[2022-12-11 09:20:44]:Mr.Zhang:LOGOUT
+[2022-12-11 09:23:18]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-11 09:23:33]:Mr.Zhang:recieve no input
+[2022-12-11 09:23:48]:Mr.Zhang:recieve no input
+[2022-12-11 09:23:48]:Mr.Zhang:LOGOUT

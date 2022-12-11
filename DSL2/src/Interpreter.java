@@ -10,10 +10,12 @@ public class Interpreter {
     private Step curStep =new Step();
     private String curStepName="";
     private Parser parser=new Parser();
+    private Log log=new Log();
 
     public void setUser(User user) {
         this.user = user;
         var_value.put("amount",user.getAmount());
+        log.write("USER LOGIN: "+user);
     }
 
     public void setArgs(){
@@ -38,8 +40,9 @@ public class Interpreter {
                 speak(curStep.expression);
             }
             if(curStep.IsExit()){
-                System.exit(0);
                 System.out.println("==========CONVERSATION END=============");
+                log.write(user.getName()+":LOGOUT");
+                System.exit(0);
             }
             if(curStep.IsNeedListen()){
                 dos.userOut();
@@ -48,6 +51,7 @@ public class Interpreter {
             }
             if(answer.isEmpty()){
                 System.out.println();
+                log.write(user.getName()+":recieve no input");
                 if(parser.getScrip().getName_step().get(curStep.silence_to)==null){
                     curStep=parser.getScrip().getName_step().get(curStep.default_to);
                 }else{
@@ -56,14 +60,16 @@ public class Interpreter {
 
             }
             else if(curStep.getBranches().get(answer)==null){
-                //dos.robotOut();
-               // System.out.println("Sorry, I can't understand you. I will be better in the future :)");
+                log.write(user.getName()+":GET THE ANSWER "+answer);
                 curStep=parser.getScrip().getName_step().get(curStep.default_to);
+
             }else{
+                log.write(user.getName()+":GET THE ANSWER "+answer);
                 curStepName=curStep.getBranches().get(answer);
                 curStep=parser.getScrip().getName_step().get(curStep.getBranches().get(answer));
                 if(curStep==null){
                     System.out.println("Error!!Can't find the current step!");
+                    log.write(user.getName()+":Error!!Can't find the current step!");
                 }
             }
 //            if(parser.getScrip().getName_step().get(answer)==null){
