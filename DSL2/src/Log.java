@@ -6,7 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Log {
-    //类方法
+    /**
+     * 日志管理模块
+     * @param s 需要写入日志的内容
+     */
     public static void write(String s){
         String filepath="log.txt";
         Date date=new Date();
