@@ -7,23 +7,30 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 /**
- *
+ * 解释器类，负责解释程序，模拟接通电话，连接至媒体服务器操作
+ * 获取脚本语法树，创建执行环境
  */
 public class Interpreter {
-    private HashMap<String,String>var_value=new HashMap<>(); //key=变量名，value=变量值
+    private HashMap<String,String>var_value=new HashMap<>(); //变量表 key=变量名，value=变量值
     private User user=new User();
-    private DOS dos=new DOS();
-    private Step curStep =new Step();
-    private String curStepName="";
-    private Parser parser=new Parser();
-    private Log log=new Log();
+    private Step curStep =new Step(); //当前步骤
+    private String curStepName=""; //当前步骤名
+    private Parser parser=new Parser();  //存储语法树
+    private Log log=new Log(); //输出日志对象
 
+    /**
+     * 设置用户信息
+     * @param user 用户对象
+     */
     public void setUser(User user) {
         this.user = user;
         var_value.put("amount",user.getAmount());
         log.write("USER LOGIN: "+user);
     }
 
+    /**
+     * 将语法树中的变量名和命令行参数对应起来
+     */
     public void setArgs(){
         //将语法树中的变量名和命令行参数对应起来
         for(int i=0;i<parser.getScrip().getVars().size();i++)
@@ -36,8 +43,10 @@ public class Interpreter {
     }
 
     /**
-     *
-     * @param conf_file
+     *解释器执行的代码主体，获取脚本语法树，创建执行环境
+     * 进行step的执行和跳转
+     * 对listen和speak操作进行处理
+     * @param conf_file 脚本文件
      */
     public void run(String conf_file){
         System.out.println("==========CONVERSATION BEGIN===========");
@@ -49,16 +58,16 @@ public class Interpreter {
         while(true){
             answerFlag=false;
             if(curStep.expression!=null){
-                dos.robotOut();
+                DOS.robotOut();
                 speak(curStep.expression);
             }
             if(curStep.IsExit()){
                 System.out.println("==========CONVERSATION END=============");
                 log.write(user.getName()+":LOGOUT");
-                System.exit(0);
+                break;
             }
             if(curStep.IsNeedListen()){
-                dos.userOut();
+                DOS.userOut();
                 answer=listen();
                 answerFlag=true;
                 answer=answer.replaceAll("\r|\n", "");
@@ -88,17 +97,12 @@ public class Interpreter {
                     log.write(user.getName()+":Error!!Can't find the current step!");
                 }
             }
-//            if(parser.getScrip().getName_step().get(answer)==null){
-//                curStep=parser.getScrip().getName_step().get(parser.getTempstep().default_to);
-//            }else{
-//                curStep=parser.getScrip().getName_step().get(answer);
-//            }
         }
     }
 
     /**
-     *
-     * @return
+     * 获取用户输入
+     * @return 用户输入的字符串
      */
     public String getInput(){
         Scanner sc=new Scanner(System.in);
@@ -107,12 +111,12 @@ public class Interpreter {
     }
 
     /**
-     *
-     * @param is
-     * @param buf
-     * @param timeoutMillis
-     * @return
-     * @throws IOException
+     *实现对话的超时退出功能
+     * @param is 输入流
+     * @param buf 初始缓冲区数组
+     * @param timeoutMillis 最大等待时间
+     * @return 读取的字符长度
+     * @throws IOException 捕获IO异常
      */
     public int readInputStreamWithTimeout(InputStream is, byte[] buf, int timeoutMillis)
             throws IOException {
@@ -139,8 +143,8 @@ public class Interpreter {
     }
 
     /**
-     *
-     * @return
+     * 从控制台获取输入操作
+     * @return 用户输入的字符串
      */
     public String readInput() {
 
@@ -161,17 +165,17 @@ public class Interpreter {
         return s;
     }
     /**
-     *
-     * @return
+     * 模拟调用媒体服务器对客户说的话录音，并进行语音识别，语音识别的结果调用自然语言分析服务分析客户的意愿
+     * @return 机器人听到的语句
      */
     public String listen() {
         return readInput();
     }
-    //把exp中的语句输出给用户
 
     /**
-     *
-     * @param exps
+     * 模拟机器人语音合成操作
+     * 计算表达式合成一段文字，模拟调用媒体服务器进行语音合成并播放
+     * @param exps 需要计算的表达式内容
      */
     public void speak(ArrayList<String>exps){
         for(int i=0;i<exps.size();i++){
@@ -190,6 +194,13 @@ public class Interpreter {
         }
         System.out.println();
     }
+
+    /**
+     * 媒体服务器测试桩
+     * 将机器人回复内容输出到文件中
+     * @param exps 需要输出的表达式
+     * @param ofile 输出文件
+     */
     public void testSpeak(ArrayList<String>exps,File ofile){
         Writer out=null;
         try{
@@ -219,10 +230,10 @@ public class Interpreter {
     }
 
     /**
-     *匹配两个文件的差异，如果有差异输出差异地方
+     * 匹配两个文件的差异，如果有差异输出差异地方
      * @param validFile 预期输出文件
      * @param testFile 实际输出文件
-     * @throws IOException
+     * @throws IOException 抛出IO异常
      */
     public static boolean FileIsEqual(String validFile, String testFile) throws IOException {
         List<String> list1 =  Files.readAllLines(Paths.get(validFile));
@@ -237,6 +248,13 @@ public class Interpreter {
             return false;
         }
     }
+
+    /**
+     * 解释器的测试主函数
+     * 自然语言分析测试桩
+     * @param conf_file 脚本文件
+     * @param in_file 测试文件
+     */
     public void test(String conf_file,String in_file){
         parser.ParseFile(conf_file);
         String entrance=parser.getScrip().getEntry();
@@ -319,7 +337,7 @@ public class Interpreter {
             if(FileIsEqual(validPath,testPath)){
                 System.out.println("Test passed between "+testPath+" and "+validPath+"!Congratulations!");
             }else{
-                System.out.println("The output between "+testPath+" and "+validPath+ "is unexpected. Your program is best! Only need to fix some bugs. ");
+                System.out.println("The output between "+testPath+" and "+validPath+ " is unexpected. Your program is best! Only need to fix some bugs. ");
             }
         } catch (IOException e) {
             e.printStackTrace();

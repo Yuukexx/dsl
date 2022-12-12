@@ -1,9 +1,12 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * 语法分析模块，对脚本进行语法分析
+ */
 public class Parser {
-    private Step tempstep=new Step();
-    private String lastStepid="";
+    private Step tempstep=new Step(); //当前步骤
+    private String lastStepid=""; //存储上一步的步骤名
     private Scrip scrip=new Scrip(); //语法树树根
 
     public void setLastStepid(String lastStepid) {
@@ -30,13 +33,16 @@ public class Parser {
         return lastStepid;
     }
 
+    /**
+     * 打开文件，对文件的每一行进行读取并送入每一行的处理程序
+     * @param filename 脚本文件名
+     */
     public void ParseFile(String filename){
         BufferedReader reader=null;
         File f=new File(filename);
         try{
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(f), "gbk"));
             //加入编码字符集，解决中文乱码问题
-            //reader = new BufferedReader(new FileReader(filename));
             String line=reader.readLine();
             String content;
             while(line!=null){
@@ -70,6 +76,11 @@ public class Parser {
             }
         }
     }
+
+    /**
+     * 对文件的每一行进行处理，提取每一个token符号
+     * @param line 代表一行的所有字符的字符串
+     */
     public void ParseLine(String line){
         ArrayList<String>tokens=new ArrayList<>();
         //tempword获取这一行的每一个词法元素
@@ -86,7 +97,6 @@ public class Parser {
                 String sub=line.substring(i+1);
                 int j=sub.indexOf('"');
                 tempword=line.substring(i,j+i+1);
-                //System.out.println("双引号内的为"+tempword);
                 i+=j+1; //i移到下一个双引号之后
             }
             if (cur_char != ' ') {
@@ -105,6 +115,11 @@ public class Parser {
         //对这一行的词法元素进行处理
         ProcessTokens(tokens);
     }
+
+    /**
+     * 对每一个token处理
+     * @param tokens token列表
+     */
     public void ProcessTokens(ArrayList<String>tokens){
         String token0=tokens.get(0);
         if(token0.equals("Step")){
@@ -136,6 +151,11 @@ public class Parser {
             System.out.println("Error!!Unknown string!");
         }
     }
+
+    /**
+     * 遇见字符串Step进行处理
+     * @param stepid 当前步骤名字
+     */
     public void ProcessStep(String stepid){
         if(scrip.getEntry().equals("")){ //如果这是第一个step
             scrip.setEntry(stepid);
@@ -148,10 +168,20 @@ public class Parser {
         tempstep=newstep;
         lastStepid=stepid;
     }
+
+    /**
+     * 遇见字符串Speak进行处理
+     * @param tokens
+     */
     public void ProcessSpeak(ArrayList<String>tokens){
         ProcessExpression(tokens);
     }
 
+    /**
+     * 将表达式存入当前的step
+     * @param tokens 表达式语法元素列表
+     * @return 是否存入成功
+     */
     public boolean ProcessExpression(ArrayList<String>tokens){
         for(int i=0;i<tokens.size();i++){
             switch (tokens.get(i).charAt(0)){
@@ -171,25 +201,55 @@ public class Parser {
         }
         return true;
     }
+
+    /**
+     * 遇见字符串”Listen"进行处理
+     * @param startTimer 监听开始时间
+     * @param endTimer 监听结束时间
+     */
     public void ProcessListen(int startTimer,int endTimer){
         Listen listen=new Listen(startTimer,endTimer);
         tempstep.setNeedListen(true);
         tempstep.setListen(listen);
     }
+
+    /**
+     * 遇见字符串“Branch"进行处理
+     * @param answer 用户的回答
+     * @param nextStepid 下一个步骤
+     */
     public void ProcessBranch(String answer,String nextStepid){
         String var=answer.substring(1,answer.length()-1); //去掉answer的双引号
         tempstep.branches.put(var,nextStepid);
     }
+
+    /**
+     * 遇见字符串Default进行处理
+     * @param nextStepid 下一个步骤的名字
+     */
     public void ProcessDefault(String nextStepid){
         tempstep.default_to=nextStepid;
     }
+
+    /**
+     * 退出过程
+     */
     public void ProcessExit(){
         tempstep.setExit(true);
     }
+
+    /**
+     * 沉默过程处理
+     * @param nextStepid 下一个步骤名称
+     */
     public void ProcessSilence(String nextStepid){
         tempstep.silence_to=nextStepid;
 
     }
+
+    /**
+     * 编程过程中的测试桩，正式程序中不调用
+     */
     public void test(){
         ParseFile("test.txt");
     }

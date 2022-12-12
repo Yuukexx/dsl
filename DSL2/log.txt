@@ -312,3 +312,118 @@
 [2022-12-11 15:59:28]:Mr.Zhang:GET THE ANSWER exit
 [2022-12-11 15:59:28]:Mr.Zhang:GET THE ANSWER 6
 [2022-12-11 15:59:28]:Mr.Zhang:LOGOUT
+[2022-12-12 17:34:41]:null:recieve no input
+[2022-12-12 17:34:41]:null:recieve no input
+[2022-12-12 17:34:41]:null:LOGOUT
+[2022-12-12 17:34:41]:null:recieve no input
+[2022-12-12 17:34:41]:null:recieve no input
+[2022-12-12 17:34:41]:null:LOGOUT
+[2022-12-12 17:37:20]:null:GET THE ANSWER check my bill
+[2022-12-12 17:37:20]:null:recieve no input
+[2022-12-12 17:37:20]:null:LOGOUT
+[2022-12-12 17:37:20]:null:GET THE ANSWER give some advice
+[2022-12-12 17:37:20]:null:GET THE ANSWER wish you a good day
+[2022-12-12 17:37:20]:null:LOGOUT
+[2022-12-12 17:37:20]:null:recieve no input
+[2022-12-12 17:37:20]:null:recieve no input
+[2022-12-12 17:37:20]:null:LOGOUT
+[2022-12-12 17:37:20]:null:GET THE ANSWER give some advice
+[2022-12-12 17:37:20]:null:recieve no input
+[2022-12-12 17:37:20]:null:recieve no input
+[2022-12-12 17:37:20]:null:LOGOUT
+[2022-12-12 17:37:20]:null:GET THE ANSWER exit
+[2022-12-12 17:37:20]:null:GET THE ANSWER 6
+[2022-12-12 17:37:20]:null:LOGOUT
+[2022-12-12 17:38:45]:null:GET THE ANSWER check my bill
+[2022-12-12 17:38:45]:null:recieve no input
+[2022-12-12 17:38:45]:null:LOGOUT
+[2022-12-12 17:38:45]:null:GET THE ANSWER give some advice
+[2022-12-12 17:38:45]:null:GET THE ANSWER wish you a good day
+[2022-12-12 17:38:45]:null:LOGOUT
+[2022-12-12 17:38:45]:null:recieve no input
+[2022-12-12 17:38:45]:null:recieve no input
+[2022-12-12 17:38:45]:null:LOGOUT
+[2022-12-12 17:38:45]:null:GET THE ANSWER give some advice
+[2022-12-12 17:38:45]:null:recieve no input
+[2022-12-12 17:38:45]:null:recieve no input
+[2022-12-12 17:38:45]:null:LOGOUT
+[2022-12-12 17:38:45]:null:GET THE ANSWER exit
+[2022-12-12 17:38:45]:null:GET THE ANSWER 6
+[2022-12-12 17:38:45]:null:LOGOUT
+[2022-12-12 17:44:09]:null:GET THE ANSWER check my bill
+[2022-12-12 17:44:09]:null:recieve no input
+[2022-12-12 17:44:09]:null:LOGOUT
+[2022-12-12 17:44:09]:null:GET THE ANSWER give some advice
+[2022-12-12 17:44:09]:null:GET THE ANSWER wish you a good day
+[2022-12-12 17:44:09]:null:LOGOUT
+[2022-12-12 17:44:09]:null:recieve no input
+[2022-12-12 17:44:09]:null:recieve no input
+[2022-12-12 17:44:09]:null:LOGOUT
+[2022-12-12 17:44:09]:null:GET THE ANSWER give some advice
+[2022-12-12 17:44:09]:null:recieve no input
+[2022-12-12 17:44:09]:null:recieve no input
+[2022-12-12 17:44:09]:null:LOGOUT
+[2022-12-12 17:44:09]:null:GET THE ANSWER exit
+[2022-12-12 17:44:09]:null:GET THE ANSWER 6
+[2022-12-12 17:44:09]:null:LOGOUT
+[2022-12-12 17:45:37]:null:GET THE ANSWER check my bill
+[2022-12-12 17:45:37]:null:recieve no input
+[2022-12-12 17:45:37]:null:LOGOUT
+[2022-12-12 17:45:37]:null:GET THE ANSWER give some advice
+[2022-12-12 17:45:37]:null:GET THE ANSWER wish you a good day
+[2022-12-12 17:45:37]:null:LOGOUT
+[2022-12-12 17:45:37]:null:recieve no input
+[2022-12-12 17:45:37]:null:recieve no input
+[2022-12-12 17:45:37]:null:LOGOUT
+[2022-12-12 17:45:37]:null:GET THE ANSWER give some advice
+[2022-12-12 17:45:37]:null:recieve no input
+[2022-12-12 17:45:37]:null:recieve no input
+[2022-12-12 17:45:37]:null:LOGOUT
+[2022-12-12 17:45:37]:null:GET THE ANSWER exit
+[2022-12-12 17:45:37]:null:GET THE ANSWER 6
+[2022-12-12 17:45:37]:null:LOGOUT
+[2022-12-12 17:46:04]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-12 17:46:16]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-12 17:46:20]:Mr.Zhang:GET THE ANSWER 3
+[2022-12-12 17:46:20]:Mr.Zhang:LOGOUT
+[2022-12-12 17:47:14]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-12 17:48:10]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-12 17:48:13]:Mr.Zhang:GET THE ANSWER 1
+[2022-12-12 17:48:13]:Mr.Zhang:LOGOUT
+[2022-12-12 17:48:13]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-12 17:48:13]:Mr.Zhang:recieve no input
+[2022-12-12 17:48:13]:Mr.Zhang:LOGOUT
+[2022-12-12 17:48:13]:Mr.Zhang:GET THE ANSWER give some advice
+[2022-12-12 17:48:13]:Mr.Zhang:GET THE ANSWER wish you a good day
+[2022-12-12 17:48:13]:Mr.Zhang:LOGOUT
+[2022-12-12 17:48:13]:Mr.Zhang:recieve no input
+[2022-12-12 17:48:13]:Mr.Zhang:recieve no input
+[2022-12-12 17:48:13]:Mr.Zhang:LOGOUT
+[2022-12-12 17:48:13]:Mr.Zhang:GET THE ANSWER give some advice
+[2022-12-12 17:48:13]:Mr.Zhang:recieve no input
+[2022-12-12 17:48:13]:Mr.Zhang:recieve no input
+[2022-12-12 17:48:13]:Mr.Zhang:LOGOUT
+[2022-12-12 17:48:13]:Mr.Zhang:GET THE ANSWER exit
+[2022-12-12 17:48:13]:Mr.Zhang:GET THE ANSWER 6
+[2022-12-12 17:48:13]:Mr.Zhang:LOGOUT
+[2022-12-12 17:50:09]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-12 17:50:09]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-12 17:50:09]:Mr.Zhang:recieve no input
+[2022-12-12 17:50:09]:Mr.Zhang:LOGOUT
+[2022-12-12 17:50:10]:Mr.Zhang:GET THE ANSWER give some advice
+[2022-12-12 17:50:10]:Mr.Zhang:GET THE ANSWER wish you a good day
+[2022-12-12 17:50:10]:Mr.Zhang:LOGOUT
+[2022-12-12 17:50:10]:Mr.Zhang:recieve no input
+[2022-12-12 17:50:10]:Mr.Zhang:recieve no input
+[2022-12-12 17:50:10]:Mr.Zhang:LOGOUT
+[2022-12-12 17:50:10]:Mr.Zhang:GET THE ANSWER give some advice
+[2022-12-12 17:50:10]:Mr.Zhang:recieve no input
+[2022-12-12 17:50:10]:Mr.Zhang:recieve no input
+[2022-12-12 17:50:10]:Mr.Zhang:LOGOUT
+[2022-12-12 17:50:10]:Mr.Zhang:GET THE ANSWER exit
+[2022-12-12 17:50:10]:Mr.Zhang:GET THE ANSWER 6
+[2022-12-12 17:50:10]:Mr.Zhang:LOGOUT
+[2022-12-12 22:51:26]:USER LOGIN: name=Mr.Zhang;phoneNum=18842901424;amount=100.00;
+[2022-12-12 22:51:36]:Mr.Zhang:GET THE ANSWER check my bill
+[2022-12-12 22:51:39]:Mr.Zhang:GET THE ANSWER 3
+[2022-12-12 22:51:39]:Mr.Zhang:LOGOUT

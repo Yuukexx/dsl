@@ -5,9 +5,12 @@ import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 日志管理模块
+ */
 public class Log {
     /**
-     * 日志管理模块
+     * 将指定内容写入日志文件
      * @param s 需要写入日志的内容
      */
     public static void write(String s){

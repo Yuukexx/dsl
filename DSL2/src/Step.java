@@ -3,14 +3,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 步骤类
+ * 完整表示一个步骤所有行为
+ */
 public class Step {
     ArrayList<String>expression=new ArrayList<>(); //记录Speak的表达式
     Map<String,String> branches =new HashMap<>(); //key=用户需求的名字, value=用户需求对应分支的StepId,对应一个step中的多个Branch分支
     Listen listen=new Listen();
-    String silence_to=new String();
-    String default_to=new String();
-    private boolean exit=false;
-    private boolean needListen=false;
+    String silence_to=new String();  //沉默跳转步骤名
+    String default_to=new String();  //默认跳转步骤名
+    private boolean exit=false;   //是否需要退出
+    private boolean needListen=false;  //是否需要监听操作
 
     public void setNeedListen(boolean needListen) {
         this.needListen = needListen;

@@ -2,6 +2,9 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 看做语法树的根节点，存储所有的step，变量表并指定入口step
+ */
 public class Scrip {
     private HashMap<String,Step> name_step =new HashMap<String,Step>(); //存放所有的step, key=step名，value=step
     private ArrayList<String>vars=new ArrayList<>();  //变量表，存所有的变量名
