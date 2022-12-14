@@ -1,0 +1,38 @@
+Step welcome
+    Speak "Hello! Can I help you?"
+    Listen 5 20
+    Branch "check my bill" billProc
+    Branch "give some advice" complainProc
+    Branch "exit" scoreProc
+    Silence silenceProc
+    Default defaultProc
+
+Step scoreProc
+    Speak "Please score for my service, between 1 to 10, 10 is the highest ^-^"
+    Listen 5 20
+    Silence silenceProc
+    Default defaultProc
+
+Step billProc
+    Speak "Your bill this month is " + $amount + " dollars."
+    Branch "exit" scoreProc
+    Silence defaultProc
+    Default scoreProc
+
+Step silenceProc
+    Speak "Sorry, I can't hear you clearly. Could you speak up?"
+    Listen 5 20
+    Branch "check my bill" billProc
+    Branch "give some advice" complainProc
+    Branch "exit" scoreProc
+    Default defaultProc
+
+Step complainProc
+    Speak "We are glad to hear your advice: "
+    Listen 5 20
+    Silence silenceProc
+    Default defaultProc
+
+Step defaultProc
+    Speak "Thank you for your calling.Wish you have a nice day. Bye-bye! "
+    Exit

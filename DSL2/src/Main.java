@@ -9,7 +9,7 @@ public class Main {
     static User user=new User();
     /**
      * 接收并处理命令行参数，启动程序
-     * @param args 控制台输入参数，
+     * @param args 控制台输入参数
      *             正常运行形式为 -d test.rsl -i name=Mr.Zhang phonenum=18842901424 amount=100.00
      *             测试形式为 -d test.rsl -t testfile.txt -i name=Mr.Zhang phonenum=18842901424 amount=100.00
      */

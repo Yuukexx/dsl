@@ -1,0 +1,39 @@
+#起始步骤
+Step welcome
+    Speak "Hello! Can I help you?"
+    Listen 5 20
+    Branch "get the weather" weatherProc
+    Branch "give some advice" complainProc
+    Branch "exit" scoreProc
+    Silence silenceProc
+    Default defaultProc
+#处理打分的步骤
+Step scoreProc
+    Speak "Please score for my service, between 1 to 10, 10 is the highest ^-^"
+    Listen 5 20
+    Silence silenceProc
+    Default defaultProc
+#处理查天气的步骤
+Step weatherProc
+    Speak "It is going to be " + $amount +"."
+    Branch "exit" scoreProc
+    Silence defaultProc
+    Default scoreProc
+#处理用户不说话的步骤
+Step silenceProc
+    Speak "Sorry, I can't hear you clearly. Could you speak up?"
+    Listen 5 20
+    Branch "check my bill" billProc
+    Branch "give some advice" complainProc
+    Branch "exit" scoreProc
+    Default defaultProc
+#处理用户意见的步骤
+Step complainProc
+    Speak "We are glad to hear your advice: "
+    Listen 5 20
+    Silence silenceProc
+    Default defaultProc
+#默认处理步骤
+Step defaultProc
+    Speak "Thank you for your calling.Wish you have a nice day. Bye-bye! "
+    Exit

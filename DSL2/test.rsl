@@ -24,6 +24,7 @@ Step silenceProc
     Listen 5 20
     Branch "check my bill" billProc
     Branch "give some advice" complainProc
+    Branch "exit" scoreProc
     Default defaultProc
 
 Step complainProc
